@@ -69,6 +69,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### Redux libs
 redux: The redux library
+
 react-redux: integration layer between react and redux
+
 axios: make network requests
+
 redux-thunk: middleware to help us make requests in a redux app
