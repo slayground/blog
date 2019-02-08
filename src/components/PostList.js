@@ -4,7 +4,7 @@ import { fetchPosts } from '../actions'
 
 class PostList extends Component {
     
-    // redux listener: 148-150 udemy
+    // redux listener: 148-150 udemy "Redux is not magic"
     componentDidMount() {
         this.props.fetchPosts();
     }
@@ -18,6 +18,7 @@ class PostList extends Component {
     }
 }
 
+// The connect function will dispatch behind the screen for us
 export default connect(
     null, //suppose to be mapStateToPosts
     { fetchPosts }

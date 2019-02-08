@@ -1,7 +1,7 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
 
 // fetchPosts is an action creator
-// Bad approach
+// Bad approach with plain async awajt
 // Action creator rule: Actions must be plain objects
 
 // export const fetchPosts = () => {
@@ -23,10 +23,6 @@ export const fetchPosts = () => async dispatch => {
         type: 'FETCH_POSTS',
         payload: response
     })
-
-    console.log(typeof(response))
-    console.log(typeof(response.data[10]))
-    console.log(response.data[10].body)
 }
 
 // what really happens with async await babeljs
