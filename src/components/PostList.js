@@ -4,6 +4,7 @@ import { fetchPosts } from '../actions'
 
 class PostList extends Component {
     
+    // redux listener: 148-150 udemy
     componentDidMount() {
         this.props.fetchPosts();
     }
