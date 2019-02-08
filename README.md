@@ -75,3 +75,5 @@ react-redux: integration layer between react and redux
 axios: make network requests
 
 redux-thunk: middleware to help us make requests in a redux app
+
+-> middleware: are functions that slightly change the behavior of app
