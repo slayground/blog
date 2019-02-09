@@ -1,4 +1,4 @@
-let state;
+let state = [];
 
 // Mutate: Modify element in an array/object // bad
 // We should create a new array/object instead // good
