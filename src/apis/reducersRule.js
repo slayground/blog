@@ -1,5 +1,8 @@
 let state;
 
+// Mutate: Modify element in an array/object // bad
+// We should create a new array/object instead // good
+
 // Removing an element from an array
 state.pop() // bad
 state.filter(element => element != "bar") // good
@@ -22,4 +25,5 @@ state.age = 23 // bad
 
 // Removing a property from an object
 delete state.name // bad
-{...state, age: undefined} //good
+{...state, name: undefined} // good
+_.omit(profile, 'name') // optimal
