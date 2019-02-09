@@ -37,3 +37,12 @@ export const fetchPosts = () => async dispatch => {
 // }
 
 // promise gives a handle on when requests data is complete
+
+export const fetchUser = (id) => async dispatch => {
+    const response = await jsonPlaceholder.get(`/users/${id}`);
+
+    dispatch({
+        type: 'FETCH_USER',
+        payload: response.data
+    })
+}
