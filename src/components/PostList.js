@@ -9,17 +9,43 @@ class PostList extends Component {
         this.props.fetchPosts();
     }
 
+    renderList() {
+        return this.props.posts.map(post => {
+            return(
+                <div key={post.id}>
+                    <div>
+                        <h3>
+                            {post.id}{'. '}{post.title}
+                        </h3>
+                    </div>
+                    <div>
+                        <p>
+                            {post.body}
+                        </p>
+                    </div>
+                    <br />
+                </div>
+            )
+        })
+    }
+
     render() {
         return(
             <div>
-                Post List
+                {this.renderList()}
             </div>
         )
     }
 }
 
-// The connect function will dispatch behind the screen for us
+const mapStateToPosts = (state) => {
+    return {
+        posts: state.posts
+    }
+}
+
+// The connect function will store.dispatch(action) behind the screen for us
 export default connect(
-    null, //suppose to be mapStateToPosts
+    mapStateToPosts, //suppose to be mapStateToPosts
     { fetchPosts }
 )(PostList);
