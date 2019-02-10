@@ -1,4 +1,5 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
+import _ from 'lodash';
 
 // fetchPosts is an action creator
 // Bad approach with plain async awajt
@@ -38,11 +39,17 @@ export const fetchPosts = () => async dispatch => {
 
 // promise gives a handle on when requests data is complete
 
-export const fetchUser = (id) => async dispatch => {
+export const fetchUser = (id) => dispatch => {
+    _fetchUser(id, dispatch);
+}
+
+// put func outside to memoize (prevents overfetching)
+// _fetchUser to indicate private func
+const _fetchUser = _.memoize(async (id, dispatch) => {
     const response = await jsonPlaceholder.get(`/users/${id}`);
 
     dispatch({
         type: 'FETCH_USERS',
         payload: response.data
     })
-}
+})
