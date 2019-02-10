@@ -1,5 +1,5 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
-import _ from 'lodash';
+// import _ from 'lodash';
 
 // fetchPosts is an action creator
 // Bad approach with plain async awajt
@@ -16,16 +16,6 @@ import _ from 'lodash';
 //     }
 // };
 
-// Refactoring fetchPosts
-export const fetchPosts = () => async dispatch => {
-    const response = await jsonPlaceholder.get('/posts')
-
-    dispatch({
-        type: 'FETCH_POSTS',
-        payload: response.data
-    })
-}
-
 // what really happens with async await babeljs
 // export const fetchPosts = async () => {
 //     case 0:
@@ -39,17 +29,39 @@ export const fetchPosts = () => async dispatch => {
 
 // promise gives a handle on when requests data is complete
 
-export const fetchUser = (id) => dispatch => {
-    _fetchUser(id, dispatch);
+// Refactoring fetchPosts
+export const fetchPosts = () => async dispatch => {
+    const response = await jsonPlaceholder.get('/posts')
+
+    dispatch({
+        type: 'FETCH_POSTS',
+        payload: response.data
+    })
 }
 
+// MEMOIZE approach
 // put func outside to memoize (prevents overfetching)
 // _fetchUser to indicate private func
-const _fetchUser = _.memoize(async (id, dispatch) => {
+
+// export const fetchUser = (id) => dispatch => {
+//     _fetchUser(id, dispatch);
+// }
+
+// const _fetchUser = _.memoize(async (id, dispatch) => {
+//     const response = await jsonPlaceholder.get(`/users/${id}`);
+
+//     dispatch({
+//         type: 'FETCH_USERS',
+//         payload: response.data
+//     })
+// })
+
+// ORIGINAL approach
+export const fetchUser = (id) => async dispatch => {
     const response = await jsonPlaceholder.get(`/users/${id}`);
 
     dispatch({
         type: 'FETCH_USERS',
         payload: response.data
     })
-})
+}
