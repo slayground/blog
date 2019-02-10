@@ -1,5 +1,5 @@
 import jsonPlaceholder from '../apis/jsonPlaceholder';
-// import _ from 'lodash';
+import _ from 'lodash';
 
 // fetchPosts is an action creator
 // Bad approach with plain async awajt
@@ -57,11 +57,27 @@ export const fetchPosts = () => async dispatch => {
 // })
 
 // ORIGINAL approach
-export const fetchUser = (id) => async dispatch => {
+export const fetchUser = (id) => async (dispatch) => {
     const response = await jsonPlaceholder.get(`/users/${id}`);
 
     dispatch({
         type: 'FETCH_USERS',
         payload: response.data
     })
+}
+
+// call action creator inside action creator -> dispatch()
+export const fetchPostsAndUsers = () => async (dispatch, getState) => {
+    // await makes sure fetchPosts finishes fetching before moving on to the next line
+    await dispatch(fetchPosts());
+
+    const userIds = _.uniq(_.map(getState().posts, 'userId'));
+    userIds.forEach(id => dispatch(fetchUser(id)));
+
+    // optional way
+    // _.chain(getState.posts)
+    //     .map('userId')
+    //     .uniq()
+    //     .forEach(id => dispatch(fetchUser(id)))
+    //     .value(); // execute
 }

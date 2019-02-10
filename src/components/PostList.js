@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions'
+import { fetchPostsAndUsers } from '../actions'
 
 import UserHeader from './UserHeader'
 
@@ -8,7 +8,7 @@ class PostList extends Component {
     
     // redux listener: 148-150 udemy "Redux is not magic"
     componentDidMount() {
-        this.props.fetchPosts();
+        this.props.fetchPostsAndUsers();
     }
 
     renderList() {
@@ -50,5 +50,5 @@ const mapStateToPosts = (state) => {
 // The connect function will store.dispatch(action) behind the screen for us
 export default connect(
     mapStateToPosts, //suppose to be mapStateToPosts
-    { fetchPosts }
+    { fetchPostsAndUsers }
 )(PostList);
